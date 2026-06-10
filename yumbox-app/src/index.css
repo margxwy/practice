@@ -842,198 +842,66 @@ body {
   .cart-footer { margin: auto -20px -20px -20px; padding: 20px; }
 } 
 
-/* =======================================================
-   ІДЕАЛЬНИЙ АДАПТИВНИЙ КОШИК (ЯК НА КОМП'ЮТЕРІ, АЛЕ ДЛЯ МОБІЛОК)
-   ======================================================= */
 @media (max-width: 768px) {
-  /* 1. Затемнення заднього фону */
+  /* 1. РОБИМО КОШИК ПОВЕРХ УСЬОГО (навіть поверх шапки) */
   .cart-overlay {
-    background-color: rgba(0, 0, 0, 0.6) !important;
+    z-index: 1005 !important;
   }
 
-  /* 2. Сайдбар виїжджає справа, але не на весь екран, а акуратно на 85-90% ширини */
   .cart-sidebar {
-    width: 85vw !important; /* Залишає тонку смужку зліва, щоб було видно, що це сайдбар */
-    max-width: 380px !important;
-    height: 100dvh !important; /* Чітко під висоту екрана смартфона */
+    width: 100% !important;
+    max-width: 100vw !important;
+    height: 100dvh !important; /* Враховує системні панелі браузера */
     position: fixed !important;
-    top: 0 !important;
+    top: 0 !important; /* Прибиваємо до самої стелі */
     right: 0 !important;
+    padding: 0 !important;
+    background: #0d0c0b !important;
+    z-index: 1006 !important; /* Перекриває шапку і плаваючу кнопку */
     display: flex !important;
     flex-direction: column !important;
-    background: #0d0c0b !important; /* Твій темний колір */
-    padding: 0 !important;
-    box-sizing: border-box !important;
-    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5) !important;
   }
 
-  /* 3. Шапка з хрестиком (завжди зверху) */
+  /* 2. ШАПКА КОШИКА (тепер вона точно видима) */
   .cart-header {
-    flex-shrink: 0 !important;
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    padding: 20px 15px 10px 15px !important;
+    flex-shrink: 0 !important; /* Забороняємо стискатися */
+    padding: 30px 20px 15px 20px !important; /* Більший відступ зверху під "чубчик" телефона */
+    background: #0d0c0b !important;
+    margin: 0 !important;
   }
 
   .cart-header h2 {
-    font-size: 20px !important;
+    font-size: 24px !important;
     margin: 0 !important;
   }
 
-  .cart-header .close-btn {
-    font-size: 28px !important;
-    background: none !important;
-    border: none !important;
-    color: #fff !important;
-    cursor: pointer !important;
-    padding: 5px !important;
+  .close-btn {
+    font-size: 38px !important;
+    line-height: 1 !important;
+    padding: 0 10px !important;
   }
 
-  /* 4. Скрол ТІЛЬКИ для списку товарів (нічого не вилітає!) */
+  /* 3. СПИСОК ТОВАРІВ (скролиться тільки він) */
   .cart-items-list {
-    flex: 1 1 auto !important;
+    flex: 1 1 auto !important; /* Займає весь вільний простір по центру */
     overflow-y: auto !important;
-    min-height: 0 !important;
-    padding: 0 15px !important;
-  }
-
-  /* 5. КАРТКА ТОВАРУ (Зберігаємо горизонтальний вигляд як на ПК!) */
-  .cart-item {
-    display: flex !important;
-    flex-direction: column !important; /* Для внутрішнього групування верх/низ */
-    padding: 12px 0 !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-    gap: 8px !important;
-  }
-
-  /* Рядок: Фото + Назва + Іконка видалення */
-  .cart-item-top {
-    display: flex !important;
-    flex-direction: row !important; /* Строго в лінію! */
-    align-items: center !important;
-    justify-content: space-between !important;
-    width: 100% !important;
-    gap: 10px !important;
-  }
-
-  .cart-item-img {
-    width: 50px !important;
-    height: 50px !important;
-    min-width: 50px !important;
-    object-fit: cover !important;
-    border-radius: 6px !important;
-  }
-
-  .cart-item-info {
-    flex-grow: 1 !important;
-  }
-
-  .cart-item-info h4 {
-    font-size: 13px !important;
-    line-height: 1.2 !important;
-    margin: 0 0 2px 0 !important;
-    color: #fff !important;
-  }
-
-  .cart-item-info p {
-    font-size: 11px !important;
+    padding: 0 20px !important;
     margin: 0 !important;
-    color: rgba(255, 255, 255, 0.4) !important;
   }
 
-  /* Кнопка видалення (смітник) */
-  .delete-btn {
-    background: none !important;
-    border: none !important;
-    padding: 4px !important;
-    cursor: pointer !important;
-    flex-shrink: 0 !important;
-  }
-
-  /* Рядок: Ціна та Кнопки кількості (горизонтально!) */
-  .cart-item-bottom {
-    display: flex !important;
-    flex-direction: row !important; /* Строго в лінію! */
-    justify-content: space-between !important;
-    align-items: center !important;
-    width: 100% !important;
-    margin-top: 2px !important;
-  }
-
-  .cart-item-price {
-    font-size: 14px !important;
-    font-weight: 600 !important;
-    color: #fff !important;
-  }
-
-  /* Кнопки плюс / мінус */
-  .cart-item-controls {
-    display: flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    background: rgba(255, 255, 255, 0.05) !important;
-    border-radius: 6px !important;
-    padding: 2px !important;
-  }
-
-  .cart-item-controls button {
-    width: 26px !important;
-    height: 26px !important;
-    font-size: 14px !important;
-    background: none !important;
-    border: none !important;
-    color: #fff !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    cursor: pointer !important;
-  }
-
-  .cart-item-controls span {
-    font-size: 13px !important;
-    min-width: 16px !important;
-    text-align: center !important;
-  }
-
-  /* 6. ПІДВАЛ (Доставка + Знижка + Кнопка) — завжди зафіксований внизу сайдбара */
+  /* 4. ПІДВАЛ З КНОПКОЮ (нікуди не тікає і не обрізається) */
   .cart-footer {
     flex-shrink: 0 !important;
+    padding: 20px 20px 40px 20px !important; /* 40px знизу під свайп-панель iPhone */
     background: #0d0c0b !important;
-    padding: 15px 15px calc(15px + env(safe-area-inset-bottom, 5px)) 15px !important; /* Відступ під нижню плашку iPhone */
-    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    margin: 0 !important; /* ВБИВАЄМО від'ємні марджини, які ламали верстку */
+    border-top: 1px solid #222 !important;
+    border-radius: 0 !important;
   }
 
-  /* Твоя плашка доставки з фото */
-  .delivery-info {
-    display: flex !important;
-    justify-content: space-between !important;
-    font-size: 13px !important;
-    color: rgba(255, 255, 255, 0.7) !important;
-    margin-bottom: 12px !important;
-  }
-
-  .discount-message {
-    font-size: 12px !important;
-    color: #fcb852 !important;
-    margin: 0 0 12px 0 !important;
-    text-align: center !important;
-  }
-
-  /* Кнопка "Оформити" */
   .checkout-btn {
     width: 100% !important;
-    height: 48px !important;
-    font-size: 15px !important;
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    background: #fcb852 !important; /* Помаранчевий колір як у кнопок */
-    color: #000 !important;
-    border: none !important;
-    border-radius: 6px !important;
-    cursor: pointer !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    margin-top: 15px !important;
+    padding: 18px !important;
   }
 }
