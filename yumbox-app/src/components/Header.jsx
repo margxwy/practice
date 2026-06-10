@@ -35,12 +35,10 @@ function Header({ totalItems, finalTotal, onCartOpen }) {
         <a href="#contacts">Контакти</a>
       </nav>
 
-      {/* ДЕСКТОПНИЙ КОШИК - Показується лише якщо є товари */}
-      {totalItems > 0 && (
-        <button className="cart-badge-btn" onClick={onCartOpen}>
-          <span className="cart-count">{totalItems}</span> {finalTotal} грн
-        </button>
-      )}
+      {/* ДЕСКТОПНИЙ КОШИК - Завжди видимий */}
+      <button className="cart-badge-btn" onClick={onCartOpen}>
+        <span className="cart-count">{totalItems}</span> {finalTotal} грн
+      </button>
 
       {/* МОБІЛЬНЕ МЕНЮ */}
       <div className={`mobile-nav ${isMenuOpen ? 'open' : ''}`}>
@@ -61,24 +59,20 @@ function Header({ totalItems, finalTotal, onCartOpen }) {
           </button>
         </div>
 
-        {/* МОБІЛЬНИЙ КОШИК - Показується лише якщо є товари */}
-        {totalItems > 0 && (
+        {/* МОБІЛЬНИЙ КОШИК - Відцентрований і красивий */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '30px' }}>
           <button
-            className="mobile-nav-badge"
+            className="cart-badge-btn" 
             onClick={() => {
-              setIsMenuOpen(false); // Закриваємо мобільне меню
-              if (typeof onCartOpen === 'function') onCartOpen(); // Відкриваємо кошик
+              setIsMenuOpen(false); 
+              if (typeof onCartOpen === 'function') onCartOpen();
             }}
-            aria-label="Відкрити кошик"
-            style={{ display: 'inline-flex', gap: '10px', alignItems: 'center' }} 
           >
-            <span className="cart-count" style={{ background: '#ff4a4a', color: 'white', borderRadius: '50%', padding: '0 8px' }}>
-              {totalItems}
-            </span>
-            <span className="mobile-cart-divider" style={{ color: 'white', opacity: 0.5 }}>|</span>
-            <span style={{ fontWeight: 'bold' }}>{finalTotal} грн</span>
+            <span className="cart-count">{totalItems}</span>
+            <span style={{ margin: '0 8px', color: 'rgba(255, 255, 255, 0.4)' }}>|</span> 
+            {finalTotal} грн
           </button>
-        )}
+        </div>
 
         <nav className="mobile-navigation">
           <a href="#catalog" onClick={() => setIsMenuOpen(false)}>Каталог</a>
