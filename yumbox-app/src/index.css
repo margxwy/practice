@@ -859,6 +859,7 @@ body {
     right: 0 !important;
     background: #0d0c0b !important; /* Твій темний колір фону */
     box-sizing: border-box !important;
+    z-index: 1000 !important; /* Щоб точно було над усім */
   }
 
   /* 2. Шапка кошика (Заголовок + Хрестик закриття) */
